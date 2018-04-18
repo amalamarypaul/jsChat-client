@@ -29,10 +29,10 @@ const Header = (props) =>{
         <Toolbar>
 
           <Typography variant="title" color="inherit" className={classes.flex}>
-            <Link to='/'>Message Board</Link>
+            <Link to='/'>MESSAGE BOARD</Link>
           </Typography>
-          <Button color="inherit" href='/login'>Login</Button>
-          <Button color="inherit" href='/Signup'>Signup</Button>
+          <Link to='/login'><Button color="inherit">Login</Button></Link>
+          <Link to='/Signup'><Button color="inherit">Signup</Button></Link>
         </Toolbar>
       </AppBar>
     </div>
