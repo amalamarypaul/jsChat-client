@@ -3,17 +3,18 @@ import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
 import axios from 'axios';
 
+import { ENDPOINT } from '../config';
+
 class Messages extends Component {
   constructor(){
     super()
     this.state = {
-    endpoint:'http://127.0.0.1:3000',
     messages:[],
     loadingMessages:true,
     }
   }
   componentDidMount(){
-    axios.get(`${this.state.endpoint}/api/message`)
+    axios.get(`${ENDPOINT}/api/messages`)
     .then((response)=>{
       this.setState({messages:response.data});
       console.log(this.state.messages);

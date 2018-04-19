@@ -22,31 +22,29 @@ const LoginForm = ({
       <form action="/" onSubmit={onSubmit}>
         <h2 className="card-heading">Login</h2>
 
-        {errors.summary && <p className="error-message">{errors.summary}</p>}
-
         <div className="field-line">
           <TextField
             label="Email"
             id="email"
-            errorText={errors.email}
+            error={ errors.email ?true:false } //error prop expecting boolean value
             onChange={onChange}
             value={user.email}
           />
         </div>
-
+        {errors.email && <p className="error-message">{errors.email}</p>}
         <div className="field-line">
           <TextField
             label="Password"
             type="password"
             id="password"
             onChange={onChange}
-            errorText={errors.password}
+            error={ errors.password ? true:false } //error prop expecting boolean value
             value={user.password}
           />
         </div>
-
+        {errors.password && <p className="error-message">{errors.password}</p>}
         <div className="button-line">
-          <Button  variant= 'raised' label="Log in" color='primary'>
+          <Button  variant= 'raised' type="submit" color='primary'>
             Submit
           </Button>
         </div>

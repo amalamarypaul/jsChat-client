@@ -23,27 +23,29 @@ const SignupForm = ({
       <form action="/" onSubmit={onSubmit}>
         <h2 className="card-heading">Sign Up</h2>
 
-        {errors.summary && <p className="error-message">{errors.summary}</p>}
+
 
         <div className="field-line">
           <TextField
             label="Name"
             id="name"
-            errorText={errors.name}
+            error={ errors.name ?true:false }
             onChange={onChange}
             value={user.name}
           />
         </div>
+        {errors.name && <p className="error-message">{errors.name}</p>}
 
         <div className="field-line">
           <TextField
             label="Email"
             id="email"
-            errorText={errors.email}
+            error={ errors.email?true:false }
             onChange={onChange}
             value={user.email}
           />
         </div>
+          {errors.email && <p className="error-message">{errors.email}</p>}
 
         <div className="field-line">
           <TextField
@@ -51,11 +53,11 @@ const SignupForm = ({
             type="password"
             id="password"
             onChange={onChange}
-            errorText={errors.password}
+            error={ errors.password ?true:false }
             value={user.password}
           />
         </div>
-
+        {errors.password && <p className="error-message">{errors.password}</p>}
         <div className="button-line">
           <Button variant='raised' type="submit" color="primary" > Create New Account</Button>
         </div>

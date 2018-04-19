@@ -58,8 +58,9 @@ a:hover {
 }
 
 .error-message {
-  padding: 0 16px;
+  padding: 0 1px;
   color: tomato;
+  font-size: 10px;
 }
 
 .success-message {

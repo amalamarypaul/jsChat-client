@@ -2,6 +2,8 @@ import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 import SignupForm from './SignupForm.js';
 
+import axios from 'axios';
+import { ENDPOINT } from '../config';
 
 class SignupPage extends Component {
 
@@ -34,9 +36,11 @@ class SignupPage extends Component {
     const field = event.target.id;
     const user = this.state.user;
     user[field] = event.target.value;
-
+    const errors= this.state.errors;
+    errors[field] = '';
     this.setState({
-      user
+      user,
+      errors
     });
   }
 
@@ -48,10 +52,34 @@ class SignupPage extends Component {
   processForm(event) {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
+    // create a string for an HTTP body message
+    const email = encodeURIComponent(this.state.user.email);
+    const password = encodeURIComponent(this.state.user.password);
+    const name = encodeURIComponent(this.state.user.name);
+    //generate http request
+    axios.post(`${ENDPOINT}/signup`, {
+      email: email,
+      password: password,
+      name:name,
+    })
+    .then(()=> {
+      // success
 
-    console.log('name:', this.state.user.name);
-    console.log('email:', this.state.user.email);
-    console.log('password:', this.state.user.password);
+       // change the component-container state
+       this.setState({
+         errors: {}
+       });
+
+       console.log('The form is valid');
+    })
+    .catch((error)=> {
+      const errors = error.response.data.errors ? error.response.data.errors : {};
+        errors.summary = error.response.data.message;
+
+        this.setState({
+          errors
+        });
+    })
   }
 
   /**

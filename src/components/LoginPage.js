@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import LoginForm from './LoginForm.js';
+import axios from 'axios';
 
+import LoginForm from './LoginForm.js';
+import { ENDPOINT } from '../config';
 
 class LoginPage extends Component {
 
@@ -33,8 +35,33 @@ class LoginPage extends Component {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
 
-    console.log('email:', this.state.user.email);
-    console.log('password:', this.state.user.password);
+    // create a string for an HTTP body message
+    const email = encodeURIComponent(this.state.user.email);
+    const password = encodeURIComponent(this.state.user.password);
+
+    //generate http request
+    axios.post(`${ENDPOINT}/login`, {
+      email: email,
+      password: password,
+    })
+    .then(()=> {
+      // success
+
+       // change the component-container state
+       this.setState({
+         errors: {}
+       });
+
+       console.log('The form is valid');
+    })
+    .catch((error)=> {
+      const errors = error.response.data.errors ? error.response.data.errors : {};
+        errors.summary = error.response.data.message;
+
+        this.setState({
+          errors
+        });
+    })
   }
 
   /**
@@ -46,9 +73,11 @@ class LoginPage extends Component {
     const field = event.target.id;
     const user = this.state.user;
     user[field] = event.target.value;
-
+    const errors = this.state.errors;
+    errors[field] = '';
     this.setState({
-      user
+      user,
+      errors
     });
   }
 
