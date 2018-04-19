@@ -1,8 +1,9 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
-import SignupForm from './SignupForm.js';
-
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+
+import SignupForm from './SignupForm.js';
 import { ENDPOINT } from '../config';
 
 class SignupPage extends Component {
@@ -53,24 +54,29 @@ class SignupPage extends Component {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
     // create a string for an HTTP body message
-    const email = encodeURIComponent(this.state.user.email);
-    const password = encodeURIComponent(this.state.user.password);
-    const name = encodeURIComponent(this.state.user.name);
+    // const email = encodeURIComponent(this.state.user.email);
+    // const password = encodeURIComponent(this.state.user.password);
+    // const name = encodeURIComponent(this.state.user.name);
+
+    const email = this.state.user.email;
+    const password = this.state.user.password;
+    const name = this.state.user.name;
     //generate http request
     axios.post(`${ENDPOINT}/signup`, {
       email: email,
       password: password,
       name:name,
     })
-    .then(()=> {
+    .then((response)=> {
       // success
 
        // change the component-container state
        this.setState({
          errors: {}
        });
-
-       console.log('The form is valid');
+       // set a message
+       localStorage.setItem('successMessage', response.data.message);
+       this.props.history.push("/login");
     })
     .catch((error)=> {
       const errors = error.response.data.errors ? error.response.data.errors : {};
@@ -98,4 +104,4 @@ class SignupPage extends Component {
 
 }
 
-export default SignupPage;
+export default withRouter(SignupPage);

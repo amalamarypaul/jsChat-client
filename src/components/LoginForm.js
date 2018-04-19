@@ -13,6 +13,7 @@ import Header from './Header.js';
 const LoginForm = ({
   onSubmit,
   onChange,
+  successMessage,
   errors,
   user
 }) => (
@@ -21,12 +22,13 @@ const LoginForm = ({
     <Card className="container">
       <form action="/" onSubmit={onSubmit}>
         <h2 className="card-heading">Login</h2>
-
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errors.summary && <p className="error-message">{errors.summary}</p>}
         <div className="field-line">
           <TextField
             label="Email"
             id="email"
-            error={ errors.email ?true:false } //error prop expecting boolean value
+            error={ (errors.email || errors.summary) ?true:false } //error prop expecting boolean value
             onChange={onChange}
             value={user.email}
           />
@@ -38,7 +40,7 @@ const LoginForm = ({
             type="password"
             id="password"
             onChange={onChange}
-            error={ errors.password ? true:false } //error prop expecting boolean value
+            error={ (errors.password || errors.summary) ? true:false } //error prop expecting boolean value
             value={user.password}
           />
         </div>

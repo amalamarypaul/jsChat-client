@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Redirect,
+  withRouter
+   } from 'react-router-dom';
 
 import LoginForm from './LoginForm.js';
+import Auth from '../Auth';
 import { ENDPOINT } from '../config';
 
 class LoginPage extends Component {
@@ -12,10 +16,18 @@ class LoginPage extends Component {
    */
   constructor(props) {
     super(props);
+    //collecting the message already stored
+    const storedMessage = localStorage.getItem('successMessage');
+    let successMessage = '';
 
+    if (storedMessage) {
+      successMessage = storedMessage;
+      localStorage.removeItem('successMessage');
+    }
     // set the initial component state
     this.state = {
       errors: {},
+      successMessage,
       user: {
         email: '',
         password: ''
@@ -36,28 +48,30 @@ class LoginPage extends Component {
     event.preventDefault();
 
     // create a string for an HTTP body message
-    const email = encodeURIComponent(this.state.user.email);
-    const password = encodeURIComponent(this.state.user.password);
+    // const email = encodeURIComponent(this.state.user.email);
+    // const password = encodeURIComponent(this.state.user.password);
+
+    const email = this.state.user.email;
+    const password = this.state.user.password;
 
     //generate http request
     axios.post(`${ENDPOINT}/login`, {
       email: email,
       password: password,
     })
-    .then(()=> {
+    .then((response)=> {
       // success
 
        // change the component-container state
        this.setState({
          errors: {}
        });
-
-       console.log('The form is valid');
+       Auth.authenticateUser(response.data.token);
+       this.props.history.push("/homepage");
     })
     .catch((error)=> {
-      const errors = error.response.data.errors ? error.response.data.errors : {};
+        const errors = error.response.data.errors ? error.response.data.errors : {};
         errors.summary = error.response.data.message;
-
         this.setState({
           errors
         });
@@ -74,6 +88,7 @@ class LoginPage extends Component {
     const user = this.state.user;
     user[field] = event.target.value;
     const errors = this.state.errors;
+    errors['summary']='';
     errors[field] = '';
     this.setState({
       user,
@@ -90,6 +105,7 @@ class LoginPage extends Component {
         onSubmit={this.processForm}
         onChange={this.changeUser}
         errors={this.state.errors}
+        successMessage={this.state.successMessage}
         user={this.state.user}
       />
     );
@@ -97,4 +113,4 @@ class LoginPage extends Component {
 
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
