@@ -1,8 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { Link } from 'react-router-dom';
-import Typography from 'material-ui/Typography';
 import Header from './Header';
 
 const styles = {

@@ -15,6 +15,7 @@ class Messages extends Component {
     loadingMessages:true,
     }
   }
+
   componentDidMount(){
     const url = `${ENDPOINT}/api/messages`
     // axios.get(url,{ headers:{Authorization: `bearer ${Auth.getToken()}`}})
@@ -31,15 +32,17 @@ class Messages extends Component {
       })
     })
   }
-  renderMessage=()=>{
+  renderMessage=(userMe)=>{
     return this.state.messages.map((item)=>{
-      return <Message message={item.message} author={item.name} />
+       userMe=(item.name===localStorage.getItem('currentUser'))?true:false
+      return <Message message={item.message} author={item.name} userMe={userMe}/>
     })
   }
   render(){
+    let userMe = true;
     return(
-      <div >
-        {this.renderMessage()}
+      <div style={{flex:1,alignItems:userMe?'flex-end':'flex-start'}}>
+        {this.renderMessage(userMe)}
       </div>
     )
   }

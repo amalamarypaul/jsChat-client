@@ -1,6 +1,5 @@
 //import packages
 import React, { Component } from 'react';
-import socketIOClient from 'socket.io-client';
 
 import Routes from './components/Routes.js';
 

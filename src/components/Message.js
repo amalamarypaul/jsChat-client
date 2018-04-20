@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
-import Card, { CardHeader } from 'material-ui/Card';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-
+import Card from 'material-ui/Card';
 import '../App.css';
 
 class Message extends Component {
-  constructor(){
-    super()
-  }
   render() {
-    let userMe = false;
-    if (this.props.author===localStorage.getItem('currentUser')) {
-      userMe=true;
-    }
     return(
-      <div style={{alignItems:userMe?'flex-end':'flex-start'}}>
-        <Card style={{...styles.messageContainer,backgroundColor:userMe?'darkblue':'green'}}>
+      <div>
+        <Card style={{...styles.messageContainer,backgroundColor:(this.props.userMe)?'darkblue':'green'}}>
           <p style={styles.author}>{ this.props.author }</p>
           <p style={styles.messageText}>{ this.props.message }</p>
         </Card>

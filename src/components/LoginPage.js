@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Redirect,
-  withRouter
+import {
+    withRouter
    } from 'react-router-dom';
 
 import LoginForm from './LoginForm.js';
