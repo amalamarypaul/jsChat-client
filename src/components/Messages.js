@@ -4,6 +4,7 @@ import socketIOClient from 'socket.io-client';
 import axios from 'axios';
 
 import { ENDPOINT } from '../config';
+import Auth from '../Auth';
 
 class Messages extends Component {
   constructor(){
@@ -14,7 +15,9 @@ class Messages extends Component {
     }
   }
   componentDidMount(){
-    axios.get(`${ENDPOINT}/api/messages`)
+    const url = `${ENDPOINT}/api/messages`
+    // axios.get(url,{ headers:{Authorization: `bearer ${Auth.getToken()}`}})
+    axios.get(url)
     .then((response)=>{
       this.setState({messages:response.data});
       console.log(this.state.messages);

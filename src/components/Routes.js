@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Redirect
+  Redirect,
+  withRouter
 } from 'react-router-dom';
 
 import Main from './Main.js';
@@ -23,7 +24,6 @@ const ProtectedRoute =({ component:Component, ...rest})=>(
 )
 
 const Routes = ()=>(
-
   <Router>
     <div>
       <Route exact path="/" component={Main}/>

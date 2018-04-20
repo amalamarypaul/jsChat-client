@@ -2,11 +2,12 @@ import React from 'react';
 import Card, { CardHeader } from 'material-ui/Card';
 
 import Messages from './Messages.js';
+import Header from './Header';
 
 const HomePage = () => (
   <div>
+    <Header />
     <Card className="container">
-      <CardHeader title="Message Board" subtitle="This is the home page." />
       <Messages />
     </Card>
   </div>
