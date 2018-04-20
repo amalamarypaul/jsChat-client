@@ -11,7 +11,6 @@ const HomePage = () => (
     <Messages />
     <NewMessage/>
   </div>
-
 );
 
 export default HomePage;

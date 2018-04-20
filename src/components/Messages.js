@@ -16,35 +16,56 @@ class Messages extends Component {
     }
   }
 
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
   componentDidMount(){
     const url = `${ENDPOINT}/api/messages`
     // axios.get(url,{ headers:{Authorization: `bearer ${Auth.getToken()}`}})
     axios.get(url)
     .then((response)=>{
       this.setState({messages:response.data});
-      console.log(this.state.messages);
+      this.scrollToBottom();
     })
     const socket = socketIOClient(ENDPOINT)
     socket.on('new message',(response)=>{
-      console.log(response);
       this.setState({
         messages:[...this.state.messages,response ]
       })
+      this.scrollToBottom();
     })
   }
+
   renderMessage=(userMe)=>{
     return this.state.messages.map((item)=>{
-       userMe=(item.name===localStorage.getItem('currentUser'))?true:false
+       userMe = item.name===localStorage.getItem('currentUser')
       return <Message message={item.message} author={item.name} userMe={userMe}/>
     })
   }
+
   render(){
     let userMe = true;
     return(
-      <div style={{flex:1,alignItems:userMe?'flex-end':'flex-start'}}>
+      <div style={ styles.container }>
         {this.renderMessage(userMe)}
+
+        <div ref = { element => { this.messagesEnd = element; } }>
+          {
+            // dummy div to enable scrolling towards the end of messages
+          }
+        </div>
       </div>
     )
   }
 }
+
+const styles = {
+  container: {
+    maxHeight: '80vh',
+    overflowY: 'scroll',
+    paddingLeft: 20,
+  }
+}
+
 export default Messages;
