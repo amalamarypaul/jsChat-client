@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
+import Grid from 'material-ui/Grid';
 import Card from 'material-ui/Card';
 import '../App.css';
 
 class Message extends Component {
   render() {
     return(
-      <div>
+      <Grid md = { 6 }>
         <Card style={{...styles.messageContainer,backgroundColor:(this.props.userMe)?'darkblue':'green'}}>
           <p style={styles.author}>{ this.props.author }</p>
           <p style={styles.messageText}>{ this.props.message }</p>
         </Card>
-      </div>
-
+      </Grid>
     );
   }
 }
@@ -26,10 +26,10 @@ const styles={
     color: 'white',
   },
   messageContainer:{
-    borderRadius: 50,
-    padding: 20,
-    marginTop: 30,
-    width: 700,
+    borderRadius: 5,
+    paddingLeft: 20,
+    marginTop: 15,
+    marginBottom: 15,
   }
 }
 export default Message;

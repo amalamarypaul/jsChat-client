@@ -65,6 +65,7 @@ const styles = {
     maxHeight: '80vh',
     overflowY: 'scroll',
     paddingLeft: 20,
+    paddingRight: 20,
   }
 }
 
