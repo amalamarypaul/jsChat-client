@@ -67,6 +67,7 @@ class LoginPage extends Component {
          errors: {}
        });
        Auth.authenticateUser(response.data.token);
+       localStorage.setItem('currentUser', response.data.user.name);
        this.props.history.push("/homepage");
     })
     .catch((error)=> {

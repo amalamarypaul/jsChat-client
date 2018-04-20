@@ -67,16 +67,3 @@ a:hover {
   padding: 0 16px;
   color: green;
 }
-.Message {
-  backgroundColor: 'darkblue';
-  padding: 20;
-  marginVertical: 10;
-}
-.Author {
-  fontSize: 20;
-  color: 'cyan';
-}
-.Message-text {
-  fontSize: 18;
-  color: 'white';
-}
