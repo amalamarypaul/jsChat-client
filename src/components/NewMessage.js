@@ -41,6 +41,7 @@ class NewMessage extends Component {
           onClick = { this.sendMessage }
           color = 'secondary'
           style = { styles.button }
+          disabled = { !this.state.message }
         >
           Send
         </Button>
