@@ -14,14 +14,6 @@ const HomePage = () => (
       <Messages />
       <NewMessage/>
     </div>
-
-
-    {/* <Grid alignItems = 'center' container = { true } direction = 'column' md = { 12 }>
-      <Grid md = { 12 } item = { true }>
-        <Messages />
-        <NewMessage/>
-      </Grid>
-    </Grid> */}
   </div>
 );
 

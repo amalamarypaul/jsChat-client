@@ -24,10 +24,10 @@ const styles = {
 
 
 class Header extends Component{
-  
+
   handleLogout = () =>{
   Auth.deauthenticateUser();
-    this.props.history.push('/login');
+    this.props.history.push('/');
   }
   render(){
     const { classes } = this.props;
@@ -45,7 +45,7 @@ class Header extends Component{
              </div>
              ) : (
                <div className="top-bar-right">
-                 <Link to='/login'><Button color="inherit">Login</Button></Link>
+                 <Link to='/'><Button color="inherit">Login</Button></Link>
                  <Link to='/Signup'><Button color="inherit">Signup</Button></Link>
                </div>
             )}
