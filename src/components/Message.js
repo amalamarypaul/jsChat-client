@@ -6,12 +6,13 @@ import '../App.css';
 class Message extends Component {
   render() {
     return(
-      <Grid md = { 6 }>
-        <Card style={{...styles.messageContainer,backgroundColor:(this.props.userMe)?'darkblue':'green'}}>
-          <p style={styles.author}>{ this.props.author }</p>
-          <p style={styles.messageText}>{ this.props.message }</p>
-        </Card>
-      </Grid>
+      <Card style={{
+        ...styles.messageContainer,
+        backgroundColor:(this.props.userMe)?'darkblue':'green',
+      }}>
+        <p style={styles.author}>{ this.props.author }</p>
+        <p style={styles.messageText}>{ this.props.message }</p>
+      </Card>
     );
   }
 }
@@ -26,8 +27,8 @@ const styles={
     color: 'white',
   },
   messageContainer:{
-    borderRadius: 5,
-    paddingLeft: 20,
+    borderRadius: 50,
+    paddingLeft: 30,
     marginTop: 15,
     marginBottom: 15,
   }

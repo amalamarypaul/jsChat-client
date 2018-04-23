@@ -46,14 +46,32 @@ a:hover {
   margin: 0 auto;
   margin-top: 30px;
   text-align: center;
-  width: 700px;
+  width: 250px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 50px;
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (min-width:768px) {
+  .home-container {
+    margin: auto;
+    width: 50%;
+  }
 }
 
 .card-heading {
   padding: 16px;
 }
 
-.field-line, .button-line {
+.button-line {
   padding: 16px;
 }
 
@@ -66,4 +84,8 @@ a:hover {
 .success-message {
   padding: 0 16px;
   color: green;
+}
+
+input {
+  width: 200px;
 }

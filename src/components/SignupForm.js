@@ -62,7 +62,7 @@ const SignupForm = ({
           <Button variant='raised' type="submit" color="primary" > Create New Account</Button>
         </div>
 
-        <Typography>Already have an account? <Link to="/login">Login</Link> </Typography>
+        <Typography>Already have an account? <Link to="/">Login</Link> </Typography>
       </form>
     </Card>
   </div>

@@ -26,25 +26,49 @@ class NewMessage extends Component {
       this.setState({message:''})
     })
   }
-render(){
-  return(
-
-      <div >
-        <div className="field-line">
-          <TextField
-            id="message"
-            placeholder='Type your message here'
-            onChange={this.onChange}
-            value={this.state.message}
-          />
-          <Button  variant= 'raised' onClick={this.sendMessage} color='primary'>
-            Submit
-          </Button>
-        </div>
+  render(){
+    return(
+      <div style = { styles.container }>
+        <TextField
+          id = "message"
+          placeholder = 'Type your message here'
+          onChange = { this.onChange }
+          value = { this.state.message }
+          style = { styles.textField }
+        />
+        <Button
+          variant = 'raised'
+          onClick = { this.sendMessage }
+          color = 'secondary'
+          style = { styles.button }
+          disabled = { !this.state.message }
+        >
+          Send
+        </Button>
       </div>
-
-  );
+    );
+  }
 }
+
+const styles = {
+  container: {
+    margin: 20,
+    padding: 10,
+    paddingLeft: 25,
+    borderWidth: 3,
+    borderColor: 'teal',
+    borderStyle: 'solid',
+    borderRadius: 50,
+    position: 'relative'
+  },
+  textField: {
+    width: '80%',
+  },
+  button: {
+    position: 'absolute',
+    right: 10,
+    borderRadius: 50,
+  }
 }
 
 export default NewMessage;

@@ -17,16 +17,25 @@ const ProtectedRoute =({ component:Component, ...rest})=>(
     ?
     <Component {...props}/>
     :
-    <Redirect to='/login'/>
+    <Redirect to='/'/>
+  )} />
+)
+
+const LoggedOutRoute = ({ component: Component, ...rest }) => (
+  <Route { ...rest } render = { (props) => (
+    Auth.isUserAuthenticated()
+    ?
+    <Redirect to ='/homepage' />
+    :
+    <Component {...props}/>
   )} />
 )
 
 const Routes = ()=>(
   <Router>
     <div>
-      <Route exact path="/" component={Main}/>
-      <Route path="/login" component={LoginPage}/>
-      <Route path="/Signup" component={SignupPage}/>
+      <LoggedOutRoute exact path="/" component={LoginPage}/>
+      <LoggedOutRoute path="/Signup" component={SignupPage}/>
       <ProtectedRoute path = "/homepage" component={HomePage} />
     </div>
 </Router>

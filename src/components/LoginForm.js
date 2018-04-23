@@ -46,7 +46,12 @@ const LoginForm = ({
         </div>
         {errors.password && <p className="error-message">{errors.password}</p>}
         <div className="button-line">
-          <Button  variant= 'raised' type="submit" color='primary'>
+          <Button
+            variant = 'raised'
+            type="submit"
+            color='primary'
+            fullWidth = { true }
+          >
             Submit
           </Button>
         </div>
