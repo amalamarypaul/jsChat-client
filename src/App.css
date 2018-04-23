@@ -49,11 +49,18 @@ a:hover {
   width: 700px;
 }
 
+@media (min-width:768px) {
+  .home-container {
+    margin: auto;
+    width: 50%;
+  }
+}
+
 .card-heading {
   padding: 16px;
 }
 
-.field-line, .button-line {
+.button-line {
   padding: 16px;
 }
 
