@@ -75,7 +75,7 @@ class SignupPage extends Component {
        });
        // set a message
        localStorage.setItem('successMessage', response.data.message);
-       this.props.history.push("/login");
+       this.props.history.push("/");
     })
     .catch((error)=> {
       const errors = error.response.data.errors ? error.response.data.errors : {};
