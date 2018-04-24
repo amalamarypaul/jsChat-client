@@ -1,1 +1,1 @@
-export const ENDPOINT='http://127.0.0.1:3000'
+export const ENDPOINT=process.env.REACT_APP_ENDPOINT
